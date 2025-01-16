@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup as bs
 import requests as rq
 import re
 import pandas as pd  # Add pandas to handle Excel
-from openpyxl import Workbook  # To work with Excel files
 
 sca = rq.get("https://www.coursera.org/browse")
 page = bs(sca.text, "html.parser")
