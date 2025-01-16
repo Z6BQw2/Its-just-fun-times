@@ -7,7 +7,7 @@ Created on Thu Aug 15 13:43:49 2024
 from bs4 import BeautifulSoup as bs
 import requests as rq
 import re
-import pandas as pd  # Add pandas to handle Excel
+import pandas as pd 
 
 sca = rq.get("https://www.coursera.org/browse")
 page = bs(sca.text, "html.parser")
@@ -27,8 +27,6 @@ for j, sub in enumerate(subjects2):
     lopunny = lopunny.lower()
     subjects.append(lopunny)
     lopunny = ''
-
-print(subjects)
 
 dico = {}
 for subject in subjects:
@@ -53,16 +51,13 @@ for key, val in dico.items():
             if cour1 != None:
                 cour = cour1.split(',') 
                 lvl = cour1.split(' ')
-                print(lvl, 'a', cour)
                 for i, mot in enumerate(lvl):
                     if mot == 'level':
                         break
                 BDD.append((key, el, cour[0], cour[1], lvl[i-1] + ' ' + lvl[i]))
 
-# Convert the BDD list into a DataFrame
 df = pd.DataFrame(BDD, columns=['Category', 'Popular Course', 'Course Name', 'Institution', 'Level'])
 
-# Save the DataFrame to an Excel file
 df.to_excel('coursera_courses2.xlsx', index=False)
 
 print("Data has been successfully saved to 'coursera_courses2.xlsx'")
