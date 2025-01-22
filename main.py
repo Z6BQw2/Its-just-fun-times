@@ -12,18 +12,19 @@ from sklearn.cluster import KMeans
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from Data_Cleaning import get_bert_embedding
 
 df = pd.read_excel('coursera_courses4_cleaned.xlsx')
 
 
 #Je sais pas si ça sert à quelque chose, y'a surrement des infos viable même si, si j'avais plus d'un demi-cerveau, j'aurais utilisé un truc plus cohérent que du clustering (Transfo ou que sais-je...). Mais bon, FLEMME. Je sais pas comment j'en suis venu à penser que stemming et clustering feraient bon ménage, mais YOLO.
-kmeans = KMeans(n_clusters=10, random_state=42)  # Choisis un nombre de clusters adapté
+kmeans = KMeans(n_clusters=10, random_state=42) #Chais pas, 10 ça semble pas mal vu que Coursera est pas très diversifié (très très IA, etc surtout) et que mon PC est trop vieux pour ces conneries.
 clusters = kmeans.fit_predict(list(df['Course Name Vectorized']))
 
 df['Cluster'] = clusters
 
 X = df[['Institution', 'Difficulty', 'Cluster']]
-y = df['Course Name']  # Cible : nom du cours
+y = df['Course Name']
 
 X = pd.get_dummies(X)
 
