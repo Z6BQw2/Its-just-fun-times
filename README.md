@@ -2,7 +2,7 @@ Why did I make this?
 Hell if I know.
 <br>
 Is it good?
-Heck no.
+No.
 <br>
 The architecture is just so random...
 <br>
